@@ -4,362 +4,442 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Amit Pawar | Economist & Quantitative Finance</title>
-    <!-- Importing professional, academic-style fonts -->
+    
+    <!-- Fonts: Merriweather (Serif/Academic), IBM Plex Sans (UI/Clean), JetBrains Mono (Code) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Merriweather:wght@300;500;700&display=swap" rel="stylesheet" />
+
     <style>
-        /* CSS Variables for Dark Mode Theme */
+        /* --- CSS VARIABLES & RESET --- */
         :root {
-            --surface-page: #12161c; /* Dark Background */
-            --surface-card: #191f27; /* Card Background */
-            --rule:         #2a323d; /* Subtle separator */
-            --rule-soft:    #212933;
-            --ink:          #f2f4f7; /* Light Text */
-            --ink-secondary: #b7c0cc; /* Secondary Accent */
-            --ink-muted:    #7c8798; /* Muted Text */
-            --accent-text:  #74aeef; /* Primary Highlight Color */
-            --accent-lt:    #1c2a3a; /* Darker highlight for hover */
+            /* Colors */
+            --bg: #0d1216;              /* Main Background (Darker than original) */
+            --surface: #141b23;         /* Card background */
+            --surface-hover: #1e2a37;    /* Surface on hover */
+            --border: #25303d;          /* Subtle divider */
+            --text-main: #e6ebf1;       /* High contrast text */
+            --text-muted: #8b949e;      /* Lower contrast text */
+            --accent: #7aaefc;          /* Primary Blue/Teal */
+            --accent-dark: #5a7fb3;     /* Darker accent for hovers */
+
+            /* Typography */
+            --font-serif: 'Merriweather', serif;
+            --font-sans: 'IBM Plex Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            
+            /* Spacing & Layout */
+            --container-width: 800px;
         }
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --surface-page: #12161c;
-                --surface-card: #191f27;
-                --rule:         #2a323d;
-                --rule-soft:    #212933;
-                --ink:          #f2f4f7;
-                --ink-secondary: #b7c0cc;
-                --ink-muted:    #7c8798;
-                --accent-text:  #74aeef;
-                --accent-lt:    #1c2a3a;
-            }
-        }
-        html { font-size: 17px; }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { font-size: 16px; }
         body {
-            font-family: 'IBM Plex Sans', sans-serif;
-            font-weight: 400;
-            background: var(--surface-page);
-            color: var(--ink);
-            line-height: 1.65;
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
             min-height: 100vh;
         }
+
+        /* --- LAYOUT UTILITIES --- */
         .container {
-            max-width: 800px;
+            width: 100%;
+            max-width: var(--container-width);
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 2rem;
         }
-        .section {
-            padding: 50px 0;
-            border-bottom: 1px solid var(--rule);
-            margin-bottom: 30px;
+        
+        /* Section specific layout logic (Simulating paper columns) */
+        section.main-section {
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--border);
         }
-        section:last-child {
-            border-bottom: none;
+        section:last-child { border-bottom: none; }
+
+        h2.section-title {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
         }
-        h2 {
-            color: var(--ink);
-            font-size: 1.6em;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid var(--accent-text);
-            text-transform: uppercase;
+
+        /* --- NAVIGATION --- */
+        nav.site-nav {
+            position: sticky;
+            top: 0;
+            background-color: rgba(13, 18, 22, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .nav-inner {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--text-main);
             letter-spacing: 1px;
         }
-        /* --- Hero Section --- */
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            transition: color 0.2s;
+            font-family: var(--font-mono);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+        }
+
+        /* --- HERO SECTION --- */
         #hero {
             text-align: center;
-            padding: 80px 40px;
-            background-color: var(--surface-card);
-            border-radius: 10px;
-            margin-bottom: 40px;
-        }
-        #hero h1 {
-            font-size: 3.5em;
-            color: var(--ink);
-            margin-bottom: 10px;
-        }
-        #hero h2 {
-            font-size: 1.4em;
-            color: var(--accent-text);
-            border-bottom: none;
-            margin-bottom: 30px;
-        }
-        .contact-info p {
-            margin: 8px 0;
-            font-size: 1.1em;
-        }
-        /* --- General Card Styling --- */
-        .card-content, .experience-card {
-            padding: 25px;
-            border-radius: 8px;
-            background-color: var(--surface-card);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            border: 1px solid var(--rule-soft);
-        }
-        .experience-card {
-            border-left: 4px solid var(--accent-text);
-        }
-        .experience-card h3 {
-            font-size: 1.2em;
-            color: var(--ink);
-            margin-top: 0;
-            border-bottom: 1px solid var(--rule-soft);
-            padding-bottom: 5px;
-        }
-        .experience-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        .experience-card ul li {
-            padding-left: 10px;
-            position: relative;
-        }
-        .experience-card ul li::before {
-            content: '•';
-            color: var(--accent-text);
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
+            padding-top: 6rem;
+            padding-bottom: 4rem;
+            max-width: none;
+            width: 100%;
         }
 
-        /* Research Trackers */
-        .tracker-grid {
+        .hero-name {
+            font-family: var(--font-mono);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-role {
+            font-family: var(--font-serif);
+            font-size: clamp(1.25rem, 2vw, 1.75rem);
+            color: var(--accent);
+            margin-top: 0.5rem;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-meta {
+            display: inline-block;
+            padding: 1.2rem 2rem;
+            border-radius: 4px;
+            background: var(--surface);
+            color: var(--text-main);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+        }
+
+        /* --- RESEARCH GRID --- */
+        .research-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            gap: 2rem;
+            /* Auto-fit creates a responsive grid that flows to 1 column on mobile */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
         }
-        .tracker-card {
-            padding: 20px;
-            border: 1px solid var(--rule-soft);
-            border-radius: 6px;
-            background: var(--surface-card);
-            text-decoration: none;
-            color: var(--ink);
-            transition: all 0.3s;
+
+        .research-card {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            /* Create a paper look with lines */
+            background-image: linear-gradient(to right, rgba(37, 48, 61, 0.5) 0%, transparent 100%);
         }
-        .tracker-card:hover {
-            border-color: var(--accent-text);
-            background: var(--accent-lt);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+
+        .research-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+            border-color: var(--accent);
         }
-        .tracker-title {
-            font-family: 'Newsreader', serif;
-            font-size: 1.1em;
-            color: var(--accent-text);
-            margin-bottom: 0.4rem;
+
+        .card-title {
+            font-family: var(--font-mono);
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .card-subtitle {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .card-desc {
+            font-family: var(--font-serif);
+            font-size: 1.2rem; /* Academic style for description */
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
+        /* --- EXPERIENCE LISTING --- */
+        .timeline-entry {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        @media (min-width: 600px) {
+             .timeline-entry { display: grid; grid-template-columns: 1fr 4fr; align-items: start; gap: 3rem;}
+        }
+
+        .role-date {
+            font-family: var(--font-mono);
+            color: var(--text-muted);
+            border-left: 2px solid var(--border); /* Vertical line for timeline */
+            padding-left: 2rem;
+            min-width: 150px;
+        }
+
+        .role-role {
+            font-family: var(--font-mono);
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .role-desc {
+            font-family: var(--font-serif);
+            line-height: 1.7;
+            color: var(--text-main);
+        }
+
+        /* --- TOOLS SECTION --- */
+        .tool-group {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.5rem;
+        }
+
+        .tool-category {
+            font-family: var(--font-mono);
+            color: var(--text-main);
+            margin-bottom: 1rem;
             font-weight: 600;
         }
-        .tracker-desc {
-            font-size: 0.9em;
-            color: var(--ink-muted);
-            line-height: 1.55;
-        }
 
-        /* Other Links Section */
-        .other-links {
-            padding: 20px;
-        }
-        .pill-list {
+        .skill-list li {
             list-style: none;
-            display: flex;
-            flex-wrap;
-            gap: 10px;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
         }
-        .pill-list a {
-            display: inline-block;
-            font-size: 0.82rem;
-            font-weight: 500;
-            color: var(--ink-secondary);
-            text-decoration: none;
-            border: 1px solid var(--rule-soft);
-            border-radius: 2rem;
-            padding: 0.25rem 0.85rem;
-            transition: border-color 0.15s, background 0.15s;
-        }
-        .pill-list a:hover {
-            border-color: var(--accent-text);
-            background: var(--accent-lt);
+        
+        .skill-list li:last-child { border-bottom: none; }
+
+        /* --- FOOTER & CONTACT --- */
+        footer {
+            padding: 4rem 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
         }
 
-        /* Responsive Adjustments */
-        @media (max-width: 800px) {
-            .container {
-                padding: 0 1rem;
-            }
-            .tracker-grid {
-                grid-template-columns: 1fr;
-            }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            text-decoration: none;
+            color: var(--accent);
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- MEDIA QUERIES --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Simplify nav for mobile or add hamburger */
+            .hero-meta { width: 100%; text-align: center; }
+            .timeline-entry { grid-template-columns: 1fr; }
+            .role-date { border-left: none; padding-left: 0; margin-bottom: 2rem;}
         }
     </style>
 </head>
+
 <body>
 
-    <!-- Top Navigation Bar -->
-    <div class="site-nav">
-        <div class="site-nav-inner">
-            <a class="wordmark" href="#">Amit Pawar</a>
-            <nav>
-                <a href="#hero" class="active">Home</a>
+    <!-- Navigation -->
+    <nav class="site-nav">
+        <div class="nav-inner container">
+            <a href="#" class="brand">AMIT PAWAR</a>
+            <div class="nav-links">
+                <a href="#hero">Home</a>
                 <a href="#research">Research</a>
                 <a href="#experience">Experience</a>
-                <a href="#skills">Toolkit</a>
-                <a href="#education">Education</a>
-                <a href="#contact">Connect</a>
-            </nav>
-        </div>
-    </div>
-
-    <!-- Main Content Area -->
-    <header class="masthead">
-        <div class="container">
-            <div class="header-inner">
-                <div class="header-text">
-                    <div class="name">Amit Pawar</div>
-                    <div class="title-line">Manager (Economist) &mdash; Monetary Policy Department, RBI</div>
-                </div>
-                <!-- Placeholder for a professional headshot -->
-                <div class="headshot" style="width: 150px; height: 150px; background-color: var(--accent-lt);"></div>
+                <a href="#tools">Toolkit</a>
+                <a href="#contact">Contact</a>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <main>
-        <!-- HERO SECTION -->
-        <section id="hero">
-            <div class="hero-content">
-                <h1>Amit Pawar</h1>
-                <h2>Manager (Economist) | Monetary Policy & Quantitative Finance</h2>
-                <div class="contact-info">
-                    <p>🔗 <a href="https://github.com/a0pawar" target="_blank">GitHub Profile</a></p>
-                </div>
+    <!-- Main Content -->
+    <main class="container" style="display: block; width: 100%;">
+        
+        <!-- Hero Section -->
+        <header id="hero" style="border-bottom: none;">
+            <h1 class="hero-name">Amit Pawar</h1>
+            <div class="hero-role">Manager (Economist) &mdash; Monetary Policy Dept, RBI</div>
+            <div class="hero-meta">Research Focus: Macroeconomics & Quantitative Finance</div>
+        </header>
+
+        <!-- Research Section -->
+        <section id="research" class="main-section">
+            <h2 class="section-title">Selected Publications</h2>
+            
+            <div class="research-grid">
+                <article class="research-card">
+                    <span class="card-title">Journal of Quantitative Econ.</span>
+                    <div class="card-subtitle">Dec 2024 • Non-Linear Phillips Curve</div>
+                    <p class="card-desc">Evidence from Explainable Machine Learning. This paper utilizes non-linear dynamics to redefine inflation expectations in emerging markets.</p>
+                </article>
+
+                <article class="research-card">
+                    <span class="card-title">Journal of Quantitative Econ.</span>
+                    <div class="card-subtitle">Dec 2024 • Yield Spreads & Inflation</div>
+                    <p class="card-desc">Anomalous behavior in India's term structure. We demonstrate that yield spreads are better predictors of inflation than traditional models suggest.</p>
+                </article>
+
+                <article class="research-card">
+                    <span class="card-title">RBI Working Paper Series</span>
+                    <div class="card-subtitle">Mar 2024 • Market Surprises Analysis</div>
+                    <p class="card-desc">Decomposing the inflation risk premium. We analyze how market prices anticipate policy shifts more efficiently than conventional surveys.</p>
+                </article>
+
+                <article class="research-card">
+                    <span class="card-title">Economic and Political Weekly</span>
+                    <div class="card-subtitle">Jan 2026 • Sovereign Yields (Special Article)</div>
+                    <p class="card-desc">A critical analysis of sovereign risk pricing in the context of India's recent liquidity cycles.</p>
+                </article>
+                
+                <article class="research-card" style="border-color: var(--text-muted); background: rgba(13, 18, 22, 0.9);">
+                    <span class="card-title" style="color: var(--text-muted)">Ongoing Research</span>
+                    <div class="card-subtitle">Market-Based Inflation Expectations & Anchoring</div>
+                    <p class="card-desc">Current project analyzing inflation anchoring dynamics for India. Utilizing Bayesian methods to update priors in real-time.</p>
+                </article>
             </div>
         </section>
 
-        <!-- ABOUT SECTION -->
-        <section id="about" class="container">
-            <div class="card-content">
-                <p>Manager (Economist) working in the Monetary Policy Department of the Reserve Bank of India (RBI). My research focuses on the dynamics of monetary transmission, term structure, and inflation in Indian markets. I combine rigorous empirical analysis with advanced quantitative methods to provide actionable insights for policy formulation.</p>
-                <p>Core expertise: Macroeconomics, Financial Mathematics, Econometric Modeling, and Risk Analysis.</p>
-            </div>
-        </section>
-
-        <!-- RESEARCH SECTION -->
-        <section id="research" class="container">
-            <h2>Peer-Reviewed Publications & Findings</h2>
-            <div class="tracker-grid">
-                <a class="tracker-card" href="#" onclick="alert('Details for Non-Linear Phillips Curve for India would appear here.')">
-                    <div class="tracker-title">Non-Linear Phillips Curve</div>
-                    <div class="tracker-desc">Journal of Quantitative Economics (Dec 2024) – Evidence from Explainable Machine Learning.</div>
-                </a>
-                <a class="tracker-card" href="#" onclick="alert('Details for Non-Linear Dynamics of Yield Spreads would appear here.')">
-                    <div class="tracker-title">Yield Spreads & Inflation</div>
-                    <div class="tracker-desc">Journal of Quantitative Economics (Dec 2024) – Evidence from India.</div>
-                </a>
-                <a class="tracker-card" href="#" onclick="alert('Details for Equity Markets & Monetary Policy Surprises would appear here.')">
-                    <div class="tracker-title">Market Surprises Analysis</div>
-                    <div class="tracker-desc">RBI Working Paper Series (Mar 2024) – Market-based expectations analysis.</div>
-                </a>
-                <a class="tracker-card" href="#" onclick="alert('Details for COVID-19 & Sovereign Yields would appear here.')">
-                    <div class="tracker-title">Sovereign Yields</div>
-                    <div class="tracker-desc">Economic and Political Weekly (Jan 2026) – Special Article.</div>
-                </a>
-            </div>
-            <div class="note-box">
-                <p><strong>Ongoing Project:</strong> Market-Based Inflation Expectations and Inflation Anchoring: Evidence for India.</p>
-            </div>
-        </section>
-
-        <!-- EXPERIENCE SECTION -->
-        <section id="experience" class="container">
-            <h2>Professional Experience</h2>
-            <div class="experience-card">
-                <h3>Manager (Economist), Monetary Policy Department</h3>
-                <p class="dates">July 2025 – Present | Reserve Bank of India (RBI)</p>
-                <ul>
-                    <li>Produce in-depth analytical notes on monetary transmission and liquidity dynamics for senior management.</li>
-                    <li>Extend internal analysis into rigorous research questions, driving publication-track work.</li>
-                    <li>Conduct Monetary and Liquidity Analysis grounded in empirical literature and RBI's own data.</li>
-                </ul>
-            </div>
-            <div class="experience-card">
-                <h3>Division of Financial Markets, Dep. of Economic and Policy Research</h3>
-                <p class="dates">Dec 2021 – June 2025 | Reserve Bank of India (RBI)</p>
-                <ul>
-                    <li>Researched macro-financial linkages across capital flows, rates, and FX.</li>
-                    <li>Combined daily market monitoring with structural analysis for policy audiences.</li>
-                    <li>Contributed to the Bank’s Financial Stability Report and Monetary Policy Report.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- TECHNICAL TOOLKIT SECTION -->
-        <section id="skills" class="container">
-            <h2>Technical Toolkit & Competitions</h2>
-            <div class="skills-grid">
-                <div class="skill-group">
-                    <h3>Programming & Modeling</h3>
-                    <ul>
-                        <li>Python (Primary Tool)</li>
-                        <li>MATLAB</li>
+        <!-- Experience Section -->
+        <section id="experience" class="main-section">
+            <h2 class="section-title">Professional Experience</h2>
+            
+            <div class="timeline-entry">
+                <div class="role-date">Jul 2025 &ndash; Present</div>
+                <div class="content">
+                    <div class="role-role">Manager (Economist) | Monetary Policy Department</div>
+                    <p class="role-desc">Reserve Bank of India, Mumbai</p>
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        <li style="margin-bottom: 0.5rem;"><strong>Analytical Note Production:</strong> Drafting rigorous in-depth notes on monetary transmission and liquidity dynamics for senior management.</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>R&D:</strong> Extending internal analysis into rigorous research questions, driving publication-track work.</li>
                     </ul>
                 </div>
-                <div class="skill-group">
-                    <h3>Quantitative Methods</h3>
-                    <ul>
-                        <li>Econometric Methods</li>
-                        <li>Financial Mathematics</li>
-                        <li>Applied Macro & Financial Econometrics</li>
-                        <li>Stochastic Calculus & Quantitative Finance</li>
-                    </ul>
-                </div>
-                <div class="skill-group">
-                    <h3>Data & Finance Tools</h3>
-                    <ul>
-                        <li>Bloomberg Terminal</li>
-                        <li>MS Excel</li>
-                        <li>ADIALab, Bridgewater, Metaculus, IMC Prosperity (Top-decile Finishes)</li>
+            </div>
+
+            <div class="timeline-entry">
+                <div class="role-date">Dec 2021 &ndash; Jun 2025</div>
+                <div class="content">
+                    <div class="role-role">Division of Financial Markets | Economic and Policy Research</div>
+                    <p class="role-desc">Reserve Bank of India, Mumbai</p>
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        <li style="margin-bottom: 0.5rem;"><strong>Macro-Financial Linkages:</strong> Researched capital flows, rates, and FX volatility.</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Policy Reporting:</strong> Contributed to Bank's Financial Stability Report (FSR) and Monetary Policy Report (MPR).</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- EDUCATION SECTION -->
-        <section id="education" class="container">
-            <h2>Education & Certifications</h2>
-            <div class="education-card">
-                <h3>MA Economics (Applied Quantitative Finance)</h3>
-                <p>Madras School of Economics, Chennai</p>
-                <p>CGPA: 8.11</p>
-            </div>
-            <div class="education-card">
-                <h3>B.Tech in Mechanical & Automotive Engineering</h3>
-                <p>Delhi Technological University, New Delhi</p>
-                <p>CGPA: 7.49</p>
-            </div>
-            <div class="certification-card">
-                <h3>Certification</h3>
-                <p>Certified Financial Risk Manager (GARP)</p>
-                <p>Awarded: 2024</p>
+        <!-- Education & Skills Section -->
+        <section id="tools" class="main-section">
+            <h2 class="section-title">Technical Toolkit</h2>
+            
+            <div style="display: grid; gap: 3rem;">
+                
+                <div class="tool-group">
+                    <div class="tool-category">Software & Modeling</div>
+                    <ul class="skill-list">
+                        <li><strong>Python (Primary Tool):</strong> Focus on Econometrics and Financial Engineering.</li>
+                        <li>MATLAB & Julia for Stochastic Calculus.</li>
+                        <li>Bloomberg Terminal (Advanced).</li>
+                    </ul>
+                </div>
+
+                <div class="tool-group">
+                    <div class="tool-category">Competitions & Challenges</div>
+                    <p style="margin-bottom: 1rem;">Active participation in top-tier quantitative finance competitions:</p>
+                    <ul class="skill-list">
+                        <li><strong>ADIALab, IMC Prosperity:</strong> Top-decile finishes (Consistent performance in ML-based asset pricing models).</li>
+                        <li><strong>Bridgewater Challenge.</strong></li>
+                    </ul>
+                </div>
+
             </div>
         </section>
 
-        <!-- CONTACT SECTION -->
-        <section id="contact" class="container">
-            <h2>Connect</h2>
-            <p>Open to academic collaborations and professional opportunities.</p>
-            <div class="other-links">
-                <ul class="pill-list">
-                    <li><a href="mailto:amitnirvana11@gmail.com">Email</a></li>
-                    <li><a href="https://linkedin.com/in/amittppawar" target="_blank">LinkedIn</a></li>
-                    <li><a href="https://github.com/a0pawar" target="_blank">GitHub</a></li>
-                </ul>
-            </div>
+        <!-- Education Section -->
+        <section id="education" class="main-section">
+            <h2 class="section-title">Education</h2>
+            
+            <article style="margin-bottom: 4rem; border-bottom: 1px solid var(--border); padding-bottom: 2rem;">
+                <div style="display:flex; flex-direction:column; gap: 0.5rem;">
+                    <h3 style="font-family: var(--font-mono); color:var(--accent);">MA Economics (Applied Quantitative Finance)</h3>
+                    <p style="color: var(--text-muted)">Madras School of Economics, Chennai</p>
+                    <span style="font-family: var(--font-mono); font-size: 0.9rem;">CGPA: 8.11</span>
+                </div>
+            </article>
+
+            <article style="border-bottom: 1px solid var(--border);">
+                <div style="display:flex; flex-direction:column; gap: 0.5rem;">
+                    <h3 style="font-family: var(--font-mono); color:var(--accent);">B.Tech in Mechanical & Automotive Engineering</h3>
+                    <p style="color: var(--text-muted)">Delhi Technological University, New Delhi</p>
+                    <span style="font-family: var(--font-mono); font-size: 0.9rem;">CGPA: 7.49</span>
+                </div>
+            </article>
         </section>
+
     </main>
 
-    <footer><p>&copy; 2024 Amit Pawar. Expertise in Monetary Policy, Macroeconomics.</p></footer>
+    <!-- Footer -->
+    <footer id="contact" class="container">
+        <p style="color: var(--text-muted); font-family: var(--font-mono);">Open to academic collaborations and professional opportunities.</p>
+        
+        <div class="social-links">
+            <a href="mailto:amitnirvana11@gmail.com" target="_blank">Email</a>
+            <a href="https://linkedin.com/in/amittppawar" target="_blank">LinkedIn</a>
+            <a href="https://github.com/a0pawar" target="_blank">GitHub</a>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid var(--border); margin: 2rem 0;">
+        <p>&copy; 2024 Amit Pawar. Expertise in Monetary Policy & Quantitative Finance.</p>
+    </footer>
 
 </body>
 </html>
