@@ -1,81 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Amit Pawar | Economist & Quantitative Finance</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Using a modern, professional font -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Importing professional, academic-style fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+        /* CSS Variables for Dark Mode Theme */
+        :root {
+            --surface-page: #12161c; /* Dark Background */
+            --surface-card: #191f27; /* Card Background */
+            --rule:         #2a323d; /* Subtle separator */
+            --rule-soft:    #212933;
+            --ink:          #f2f4f7; /* Light Text */
+            --ink-secondary: #b7c0cc; /* Secondary Accent */
+            --ink-muted:    #7c8798; /* Muted Text */
+            --accent-text:  #74aeef; /* Primary Highlight Color */
+            --accent-lt:    #1c2a3a; /* Darker highlight for hover */
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --surface-page: #12161c;
+                --surface-card: #191f27;
+                --rule:         #2a323d;
+                --rule-soft:    #212933;
+                --ink:          #f2f4f7;
+                --ink-secondary: #b7c0cc;
+                --ink-muted:    #7c8798;
+                --accent-text:  #74aeef;
+                --accent-lt:    #1c2a3a;
+            }
+        }
+        html { font-size: 17px; }
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-weight: 400;
+            background: var(--surface-page);
+            color: var(--ink);
+            line-height: 1.65;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .section {
+            padding: 50px 0;
+            border-bottom: 1px solid var(--rule);
+            margin-bottom: 30px;
+        }
+        section:last-child {
+            border-bottom: none;
+        }
+        h2 {
+            color: var(--ink);
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--accent-text);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        /* --- Hero Section --- */
+        #hero {
+            text-align: center;
+            padding: 80px 40px;
+            background-color: var(--surface-card);
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+        #hero h1 {
+            font-size: 3.5em;
+            color: var(--ink);
+            margin-bottom: 10px;
+        }
+        #hero h2 {
+            font-size: 1.4em;
+            color: var(--accent-text);
+            border-bottom: none;
+            margin-bottom: 30px;
+        }
+        .contact-info p {
+            margin: 8px 0;
+            font-size: 1.1em;
+        }
+        /* --- General Card Styling --- */
+        .card-content, .experience-card {
+            padding: 25px;
+            border-radius: 8px;
+            background-color: var(--surface-card);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--rule-soft);
+        }
+        .experience-card {
+            border-left: 4px solid var(--accent-text);
+        }
+        .experience-card h3 {
+            font-size: 1.2em;
+            color: var(--ink);
+            margin-top: 0;
+            border-bottom: 1px solid var(--rule-soft);
+            padding-bottom: 5px;
+        }
+        .experience-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .experience-card ul li {
+            padding-left: 10px;
+            position: relative;
+        }
+        .experience-card ul li::before {
+            content: '•';
+            color: var(--accent-text);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        /* Research Trackers */
+        .tracker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .tracker-card {
+            padding: 20px;
+            border: 1px solid var(--rule-soft);
+            border-radius: 6px;
+            background: var(--surface-card);
+            text-decoration: none;
+            color: var(--ink);
+            transition: all 0.3s;
+        }
+        .tracker-card:hover {
+            border-color: var(--accent-text);
+            background: var(--accent-lt);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        .tracker-title {
+            font-family: 'Newsreader', serif;
+            font-size: 1.1em;
+            color: var(--accent-text);
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+        .tracker-desc {
+            font-size: 0.9em;
+            color: var(--ink-muted);
+            line-height: 1.55;
+        }
+
+        /* Other Links Section */
+        .other-links {
+            padding: 20px;
+        }
+        .pill-list {
+            list-style: none;
+            display: flex;
+            flex-wrap;
+            gap: 10px;
+        }
+        .pill-list a {
+            display: inline-block;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--ink-secondary);
+            text-decoration: none;
+            border: 1px solid var(--rule-soft);
+            border-radius: 2rem;
+            padding: 0.25rem 0.85rem;
+            transition: border-color 0.15s, background 0.15s;
+        }
+        .pill-list a:hover {
+            border-color: var(--accent-text);
+            background: var(--accent-lt);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 800px) {
+            .container {
+                padding: 0 1rem;
+            }
+            .tracker-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <header>
-        <nav>
-            <div class="logo">Amit Pawar</div>
-            <ul>
-                <li><a href="#about">Profile</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Connect</a></li>
-            </ul>
-        </nav>
+    <!-- Top Navigation Bar -->
+    <div class="site-nav">
+        <div class="site-nav-inner">
+            <a class="wordmark" href="#">Amit Pawar</a>
+            <nav>
+                <a href="#hero" class="active">Home</a>
+                <a href="#research">Research</a>
+                <a href="#experience">Experience</a>
+                <a href="#skills">Toolkit</a>
+                <a href="#education">Education</a>
+                <a href="#contact">Connect</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <header class="masthead">
+        <div class="container">
+            <div class="header-inner">
+                <div class="header-text">
+                    <div class="name">Amit Pawar</div>
+                    <div class="title-line">Manager (Economist) &mdash; Monetary Policy Department, RBI</div>
+                </div>
+                <!-- Placeholder for a professional headshot -->
+                <div class="headshot" style="width: 150px; height: 150px; background-color: var(--accent-lt);"></div>
+            </div>
+        </div>
     </header>
 
     <main>
-        <!-- Hero Section: Strong Introduction -->
-        <section id="hero" class="hero">
+        <!-- HERO SECTION -->
+        <section id="hero">
             <div class="hero-content">
                 <h1>Amit Pawar</h1>
                 <h2>Manager (Economist) | Monetary Policy & Quantitative Finance</h2>
-                <div class="contact-links">
+                <div class="contact-info">
                     <p>🔗 <a href="https://github.com/a0pawar" target="_blank">GitHub Profile</a></p>
                 </div>
             </div>
         </section>
 
-        <!-- About Section -->
+        <!-- ABOUT SECTION -->
         <section id="about" class="container">
-            <h2>Profile & Focus</h2>
             <div class="card-content">
-                <p>Manager (Economist) working in the Monetary Policy Department of the Reserve Bank of India (RBI). My expertise is centered on the dynamics of monetary transmission, term structure, and inflation in Indian markets. I specialize in combining rigorous empirical analysis with advanced quantitative methods to provide actionable insights for policy formulation.</p>
-                <p>Core focus areas include Macroeconomics, Financial Mathematics, and high-level econometric modeling.</p>
+                <p>Manager (Economist) working in the Monetary Policy Department of the Reserve Bank of India (RBI). My research focuses on the dynamics of monetary transmission, term structure, and inflation in Indian markets. I combine rigorous empirical analysis with advanced quantitative methods to provide actionable insights for policy formulation.</p>
+                <p>Core expertise: Macroeconomics, Financial Mathematics, Econometric Modeling, and Risk Analysis.</p>
             </div>
         </section>
 
-        <!-- Research Section -->
+        <!-- RESEARCH SECTION -->
         <section id="research" class="container">
-            <h2>Peer-Reviewed Research</h2>
-            <div class="publication-grid">
-                <div class="publication-card">
-                    <h3>Non-Linear Phillips Curve for India</h3>
-                    <p class="journal">Journal of Quantitative Economics (Dec 2024)</p>
-                    <p class="detail">Evidence from Explainable Machine Learning.</p>
-                </div>
-                <div class="publication-card">
-                    <h3>Non-Linear Dynamics of Yield Spreads & Inflation</h3>
-                    <p class="journal">Journal of Quantitative Economics (Dec 2024)</p>
-                    <p class="detail">Evidence from India.</p>
-                </div>
-                <div class="publication-card">
-                    <h3>Equity Markets & Monetary Policy Surprises</h3>
-                    <p class="journal">RBI Working Paper Series (Mar 2024)</p>
-                    <p class="detail">Market-based expectations analysis.</p>
-                </div>
-                <div class="publication-card">
-                    <h3>COVID-19 & Sovereign Yields</h3>
-                    <p class="journal">Economic and Political Weekly (Jan 2026)</</p>
-                    <p class="detail">Special Article.</p>
-                </div>
+            <h2>Peer-Reviewed Publications & Findings</h2>
+            <div class="tracker-grid">
+                <a class="tracker-card" href="#" onclick="alert('Details for Non-Linear Phillips Curve for India would appear here.')">
+                    <div class="tracker-title">Non-Linear Phillips Curve</div>
+                    <div class="tracker-desc">Journal of Quantitative Economics (Dec 2024) – Evidence from Explainable Machine Learning.</div>
+                </a>
+                <a class="tracker-card" href="#" onclick="alert('Details for Non-Linear Dynamics of Yield Spreads would appear here.')">
+                    <div class="tracker-title">Yield Spreads & Inflation</div>
+                    <div class="tracker-desc">Journal of Quantitative Economics (Dec 2024) – Evidence from India.</div>
+                </a>
+                <a class="tracker-card" href="#" onclick="alert('Details for Equity Markets & Monetary Policy Surprises would appear here.')">
+                    <div class="tracker-title">Market Surprises Analysis</div>
+                    <div class="tracker-desc">RBI Working Paper Series (Mar 2024) – Market-based expectations analysis.</div>
+                </a>
+                <a class="tracker-card" href="#" onclick="alert('Details for COVID-19 & Sovereign Yields would appear here.')">
+                    <div class="tracker-title">Sovereign Yields</div>
+                    <div class="tracker-desc">Economic and Political Weekly (Jan 2026) – Special Article.</div>
+                </a>
             </div>
             <div class="note-box">
-                <p><strong>Ongoing Work:</strong> Market-Based Inflation Expectations and Inflation Anchoring: Evidence for India.</p>
+                <p><strong>Ongoing Project:</strong> Market-Based Inflation Expectations and Inflation Anchoring: Evidence for India.</p>
             </div>
         </section>
 
-        <!-- Experience Section -->
+        <!-- EXPERIENCE SECTION -->
         <section id="experience" class="container">
             <h2>Professional Experience</h2>
             <div class="experience-card">
@@ -98,14 +294,14 @@
             </div>
         </section>
 
-        <!-- Skills Section -->
+        <!-- TECHNICAL TOOLKIT SECTION -->
         <section id="skills" class="container">
             <h2>Technical Toolkit & Competitions</h2>
             <div class="skills-grid">
                 <div class="skill-group">
                     <h3>Programming & Modeling</h3>
                     <ul>
-                        <li>Python (Primary)</li>
+                        <li>Python (Primary Tool)</li>
                         <li>MATLAB</li>
                     </ul>
                 </div>
@@ -119,7 +315,7 @@
                     </ul>
                 </div>
                 <div class="skill-group">
-                    <h3>Tools & Competitions</h3>
+                    <h3>Data & Finance Tools</h3>
                     <ul>
                         <li>Bloomberg Terminal</li>
                         <li>MS Excel</li>
@@ -129,7 +325,7 @@
             </div>
         </section>
 
-        <!-- Education Section -->
+        <!-- EDUCATION SECTION -->
         <section id="education" class="container">
             <h2>Education & Certifications</h2>
             <div class="education-card">
@@ -140,7 +336,7 @@
             <div class="education-card">
                 <h3>B.Tech in Mechanical & Automotive Engineering</h3>
                 <p>Delhi Technological University, New Delhi</p>
-                <p>CGPA: 7.49</>
+                <p>CGPA: 7.49</p>
             </div>
             <div class="certification-card">
                 <h3>Certification</h3>
@@ -149,14 +345,16 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
+        <!-- CONTACT SECTION -->
         <section id="contact" class="container">
             <h2>Connect</h2>
-            <p>Interested in collaboration, policy discussions, or professional opportunities?</p>
-            <div class="contact-details">
-                <p>Email: <a href="mailto:amitnirvana11@gmail.com">amitnirvana11@gmail.com</a></p>
-                <p>LinkedIn: <a href="https://linkedin.com/in/amittppawar" target="_blank">linkedin.com/in/amittppawar</a></p>
-                <p>GitHub: <a href="https://github.com/a0pawar" target="_blank">github.com/a0pawar</a></p>
+            <p>Open to academic collaborations and professional opportunities.</p>
+            <div class="other-links">
+                <ul class="pill-list">
+                    <li><a href="mailto:amitnirvana11@gmail.com">Email</a></li>
+                    <li><a href="https://linkedin.com/in/amittppawar" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/a0pawar" target="_blank">GitHub</a></li>
+                </ul>
             </div>
         </section>
     </main>
