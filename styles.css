@@ -1,0 +1,198 @@
+/* Global Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f9; /* Light academic background */
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #003366; /* Deep Blue - Professional tone */
+    color: white;
+    padding: 15px 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    font-size: 1.5em;
+    font-weight: 700;
+    margin: 0;
+}
+
+header ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+header ul li {
+    margin-left: 20px;
+}
+
+header ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.3s;
+}
+
+header ul li a:hover {
+    color: #a0c3ff; /* Highlight color */
+}
+
+/* Main Content Styling */
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+section {
+    padding: 40px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+section:last-child {
+    border-bottom: none;
+}
+
+h2 {
+    color: #003366;
+    border-bottom: 3px solid #a0c3ff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+h3 {
+    color: #003366;
+    font-size: 1.3em;
+    margin-top: 0;
+}
+
+/* Hero Section */
+#hero {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #e6f7ff;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+#hero h1 {
+    font-size: 2.5em;
+    color: #003366;
+}
+
+#hero .tagline {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    margin: 5px 0;
+    font-size: 1.1em;
+}
+
+/* Container Layout */
+.container {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+/* Experience Cards */
+.experience-card {
+    border-left: 4px solid #a0c3ff;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #f0f8ff;
+}
+
+.experience-card ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+/* Research Publications Grid */
+.publication-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.publication-item {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.publication-item h3 {
+    color: #003366;
+    border-bottom: none;
+}
+
+/* Skills Grid */
+.skills-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.skills-grid ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skills-grid ul li {
+    background-color: #e6f7ff;
+    padding: 5px 10px;
+    border-radius: 5px;
+font-size: 0.9em;
+}
+
+/* Education Cards */
+.education-card, .certification-card {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-bottom: 1px dashed #aaa;
+}
+
+.education-card p, .certification-card p {
+    margin: 5px 0;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #003366;
+    color: white;
+    font-size: 0.9em;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    header {
+        padding: 15px 20px;
+    }
+    .skills-grid {
+        flex-direction: column;
+    }
+}
